@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Traducteurs{% endblock %}
+{% block body %}
+<section class="users">
+
+    {% for user in users %}
+        <user>
+            <h2>{{ user.username }}</h2>
+            <div class="metadata">Membre depuis le {{ user.createdAt | date('d/m/Y') }} à {{  user.createdAt | date('H:i') }}</div>
+            <div class="content">
+                {{ user.email }}<br>
+                {% for languages in user.language %}
+                    {{ languages.label }} /
+                    {% endfor %}
+                <br><a href="" class="btn btn-primary">Afficher le traducteur</a>
+            </div>
+        </user>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ projet.titre }}{% endblock %}
+{% block body %}
+            <h2>{{ projet.titre }}</h2>
+            <div class="metadata">Projet créé par {{ projet.user }} le {{ projet.createdAt | date('d/m/Y') }} à {{  projet.createdAt | date('H:i') }}</div>
+            <div class="content">
+                <label> Aperçu : {{ projet.contenu }}</label><br>
+                {{ projet.langProj.label }}
+                <label>==></label>
+                {% for language in projet.langTrad %}
+                    {{ language.label }} /
+                    {% endfor %}
+                    <br><label>Liste des sources :</label><br>
+                    {% for lessources in projet.sources %}
+                    {{ lessources.name }} >>> <a href="{{ path('view_source', {'id' : lessources.id }) }}" class="btn btn-primary">Afficher la source</a><br>
+                    {% endfor %}
+            </div>
+{% endblock %}

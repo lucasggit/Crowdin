@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+    <h1>Modifier le profil</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.username, {
+        'label': 'Nom d\'utilisateur'
+    }) }}
+    {{ form_row(form.email, {
+        'label': 'Votre email :'
+    }) }}
+    {{ form_row(form.password, {
+        'label': 'Mot de passe',
+        'value': ''
+    }) }}
+    {{ form_row(form.confirm_password, {
+        'label': 'Confirmez le mot de passe'
+    }) }}
+    {{ form_row(form.language) }}
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    {{ form_end(form) }}
+
+    {% endblock %}

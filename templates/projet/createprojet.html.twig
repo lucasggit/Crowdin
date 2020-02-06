@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <h1>Création du projet :</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.titre, {'label': 'Titre :'}) }}
+    {{ form_row(form.contenu, {'label': ' Résumé :'}) }}
+    {{ form_row(form.langProj, {'label': 'Langue du Projet :'}) }}
+    {{ form_row(form.langTrad, {'label': 'Traduction(s) désirée(s) :'}) }}
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}
