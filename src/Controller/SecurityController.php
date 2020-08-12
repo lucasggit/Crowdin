@@ -69,19 +69,6 @@ class SecurityController extends AbstractController
             'user' => $user
         ]);
     }
-
-    /**
-     * @Route("/traducteurs", name="traducteurs")
-     */
-    public function traducteurs(UserRepository $repo) {
-
-        $users = $repo->findByTraducteur(true);
-
-        return $this->render('crowdin/traducteurs.html.twig', [
-            'users' => $users
-        ]);
-    }
-
     
 
     /**

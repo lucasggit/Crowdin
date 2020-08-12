@@ -2,50 +2,173 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}CrowdIn{% endblock %}</title>
-        <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+        <title>{% block title %}My-Ecoach{% endblock %}</title>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script> window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+        <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="{{ path('crowdin') }}">CrowdIn</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+    <body> 
+      <style>
+        .container {
+            max-width: 90%;
+          }
           
-            <div class="collapse navbar-collapse" id="navbarColor01">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('traducteurs') }}">Traducteurs</a>
-                  </li>
-                  {% if not app.user %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('security_login') }}">Connexion</a>
-                  </li>
-                  {% else %}
-                  {% if app.user.traducteur == true %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('allProjets') }}">Projets à traduire</a>
-                  </li>
-                  {% endif %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('security_profil') }}">{{ app.user.username }}</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
-                  </li>
-                  
-                  {% endif %}
-                  
-              </ul>
-            </div>
-          </nav>
+          /*
+           * Custom translucent site header
+           */
+          
+          .site-header {
+            background-color: rgba(0, 0, 0, .85);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+          }
+          .site-header a {
+            color: #999;
+            transition: ease-in-out color .15s;
+          }
+          .site-header a:hover {
+            color: #fff;
+            text-decoration: none;
+          }
+          
+          /*
+           * Dummy devices (replace them with your own or something else entirely!)
+           */
+          
+          .product-device {
+            position: absolute;
+            right: 10%;
+            bottom: -30%;
+            width: 300px;
+            height: 540px;
+            background-color: #333;
+            border-radius: 21px;
+            -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+          }
+          
+          .product-device::before {
+            position: absolute;
+            top: 10%;
+            right: 10px;
+            bottom: 10%;
+            left: 10px;
+            content: "";
+            background-color: rgba(255, 255, 255, .1);
+            border-radius: 5px;
+          }
+          
+          .product-device-2 {
+            top: -25%;
+            right: auto;
+            bottom: 0;
+            left: 5%;
+            background-color: #e5e5e5;
+          }
+          
+          
+          /*
+           * Extra utilities
+           */
+          
+          .flex-equal > * {
+            -ms-flex: 1;
+            flex: 1;
+          }
+          @media (min-width: 768px) {
+            .flex-md-equal > * {
+              -ms-flex: 1;
+              flex: 1;
+            }
+          }
+          
+          .overflow-hidden { overflow: hidden; }
+    </style>
+    <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <a class="py-2" href="{{ path('ecoach') }}" aria-label="Product">
+          <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-bar-chart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5h-2v12h2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
+          </svg>
+        </a>
+        {% if not app.user %}
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('security_registration') }}">Inscription</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('security_login') }}">Connexion</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('informations') }}">Informations</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('support') }}">Support</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('contact') }}">Contact</a>
+        {% else %}
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('security_profil') }}">{{ app.user.username }}</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('security_logout') }}">Déconnexion</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('produits') }}">Produits</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('messages') }}">Messages</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('calendrier') }}">Calendrier</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('informations') }}">Informations</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('support') }}">Support</a>
+          <a class="py-2 d-none d-md-inline-block" href="{{ path('contact') }}">Contact</a>
+        {% endif %}
+      </div>
+    </nav>
         <div class="container">
-        {% block body %}{% endblock %}
+          {% block body %}{% endblock %}
+
+      </div>
+      {% block javascripts %}{% endblock %}
+  </body>
+  <footer class="container py-5">
+      <div class="row">
+        <div class="col-12 col-md">
+          <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-bar-chart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5h-2v12h2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
+        </svg>
+        <small class="d-block mb-3 text-muted">&copy; 2020</small>
         </div>
-        {% block javascripts %}{% endblock %}
-    </body>
+        <div class="col-6 col-md">
+          <h5>Fonctionnalités</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Page 1</a></li>
+            <li><a class="text-muted" href="#">Page 2</a></li>
+            <li><a class="text-muted" href="#">Page 3</a></li>
+            <li><a class="text-muted" href="#">Page 4</a></li>
+            <li><a class="text-muted" href="#">Page 5</a></li>
+            <li><a class="text-muted" href="#">Page 6</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Informations</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Page 1</a></li>
+            <li><a class="text-muted" href="#">Page 2</a></li>
+            <li><a class="text-muted" href="#">Page 3</a></li>
+            <li><a class="text-muted" href="#">Page 4</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Ressources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Page 1</a></li>
+            <li><a class="text-muted" href="#">Page 2</a></li>
+            <li><a class="text-muted" href="#">Page 3</a></li>
+            <li><a class="text-muted" href="#">Page 4</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Contact</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Page 1</a></li>
+            <li><a class="text-muted" href="#">Page 2</a></li>
+            <li><a class="text-muted" href="#">Page 3</a></li>
+            <li><a class="text-muted" href="#">Page 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 </html>

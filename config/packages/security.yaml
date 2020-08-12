@@ -22,10 +22,11 @@ security:
             form_login: 
                 login_path: security_login
                 check_path: security_login
+                default_target_path: security_profil
 
             logout:
                 path: security_logout
-                target: crowdin
+                target: home
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 

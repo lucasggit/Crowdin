@@ -1,25 +1,62 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<style>
 
-    <h1>Connexion :</h1>
-
-    <form action="{{ path('security_login') }}" method="POST">
-
-        <div class="form-group">
-            <input placeholder="Votre email :" required name="_username" 
-            type="text" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <input placeholder="Votre mot de passe :" required name="_password" 
-            type="password" class="form-control">
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Connexion</button>
-        </div>
-
+    .form-signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+    .form-signin .checkbox {
+      font-weight: 400;
+    }
+    .form-signin .form-control {
+      position: relative;
+      box-sizing: border-box;
+      height: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+      z-index: 2;
+    }
+    .form-signin input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+        }
+    }
+</style>
+<div style="margin-top: 5%; margin-bottom: 10%;"></div>
+    <form class="form-signin" action="{{ path('security_login') }}" method="POST">
+        <h1 class="h3 mb-3 font-weight-normal">Connectez-vous !</h1>
+        <label for="inputEmail" class="sr-only">Adresse mail</label>
+        <input placeholder="Votre email :" required name="_username" type="text" class="form-control" autofocus>
+        <label for="inputPassword" class="sr-only">Mot de passe</label>
+        <input placeholder="Votre mot de passe :" required name="_password" type="password" class="form-control">
+        <button type="submit" class="btn btn-lg btn-primary btn-block" style="background-color: rgba(0, 0, 0, .85); border-color: rgba(0, 0, 0, .85);">Connexion</button>
+        <p class="mt-5 mb-3 text-muted">&copy; My e-Coach -2020</p>
     </form>
+</div>
 
 {% endblock %}

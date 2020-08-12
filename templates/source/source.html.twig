@@ -1,9 +1,0 @@
-{% extends 'base.html.twig' %}
-{% block title %}{{ source.name }}{% endblock %}
-{% block body %}
-            <h2>{{ source.name }}</h2>
-            <div class="metadata">Source ajoutée par {{ app.user.username }} le {{ source.createdAt | date('d/m/Y') }} à {{  source.createdAt | date('H:i') }}</div>
-            <div class="content">
-            <label> Contenu : <br>{{ source.content }}</label><br>
-            </div>
-{% endblock %}

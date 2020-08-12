@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -55,30 +53,9 @@ class User implements UserInterface
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Projet", mappedBy="user")
-     */
-    private $projets;
-
-    /**
      * @ORM\Column(type="boolean")
      */
-    private $traducteur;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Langue", inversedBy="users")
-     * @Assert\Count(
-     *     min = 1,
-     *     minMessage = "Vous devez au moins selectionner une langue"
-     * )
-     * 
-     */
-    private $language;
-
-    public function __construct()
-    {
-        $this->projets = new ArrayCollection();
-        $this->language = new ArrayCollection();
-    }
+    private $coach;
 
 
     public function getId(): ?int
@@ -149,45 +126,14 @@ class User implements UserInterface
         return ['ROLE_USER'];
     }
 
-    /**
-     * @return Collection|Projet[]
-     */
-            public function getProjets(): Collection
+            public function getCoach(): ?bool
             {
-                return $this->projets;
+                return $this->coach;
             }
 
-            public function addProjet(Projet $projet): self
+            public function setCoach(bool $coach): self
             {
-                if (!$this->projets->contains($projet)) {
-                    $this->projets[] = $projet;
-                    $projet->setUser($this);
-                }
-
-                return $this;
-            }
-
-            public function removeProjet(Projet $projet): self
-            {
-                if ($this->projets->contains($projet)) {
-                    $this->projets->removeElement($projet);
-                    // set the owning side to null (unless already changed)
-                    if ($projet->getUser() === $this) {
-                        $projet->setUser(null);
-                    }
-                }
-
-                return $this;
-            }
-
-            public function getTraducteur(): ?bool
-            {
-                return $this->traducteur;
-            }
-
-            public function setTraducteur(bool $traducteur): self
-            {
-                $this->traducteur = $traducteur;
+                $this->coach = $coach;
 
                 return $this;
             }
@@ -195,31 +141,5 @@ class User implements UserInterface
             public function __toString()
             {
                 return $this->username;
-            }
-
-            /**
-             * @return Collection|Langue[]
-             */
-            public function getLanguage(): Collection
-            {
-                return $this->language;
-            }
-
-            public function addLanguage(Langue $language): self
-            {
-                if (!$this->language->contains($language)) {
-                    $this->language[] = $language;
-                }
-
-                return $this;
-            }
-
-            public function removeLanguage(Langue $language): self
-            {
-                if ($this->language->contains($language)) {
-                    $this->language->removeElement($language);
-                }
-
-                return $this;
             }
     }

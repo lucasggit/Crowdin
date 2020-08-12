@@ -6,21 +6,15 @@
 
     <profil>
             <h2>{{ app.user.username }}</h2>
-            {% if app.user.traducteur == true %}
-                <label style="color:rgba(255, 0, 0, 0.589)">{{ app.user.username }} est Traducteur</label><br>
+            {% if app.user.coach == true %}
+                <label style="color:rgba(255, 0, 0, 0.589)">{{ app.user.username }} est Coach</label><br>
                 {% endif %}
             <div class="metadata">Membre depuis le {{  app.user.createdAt | date('d/m/Y') }} à {{  app.user.createdAt | date('H:i') }}</div><br>
             <div class="content">
-                <label>Votre adresse email :</label><br>
+                <label>Votre adresse email :</label>
                 <label>{{ app.user.email }}</label><br>
-                <label>Langue(s) pratiqué(e.s) :</label><br>
-                {% for languages in app.user.language %}
-                    {{ languages.label }} /
-                    {% endfor %}
             </div><br>
         </profil>
-        <a href="{{ path('security_editprofil') }}" class="btn btn-primary">Editer mon profil</a><br><br>
-        <a href="{{ path('create_projet') }}" class="btn btn-primary">Créer un projet</a><br><br>
-        <a href="{{ path('my_projets') }}" class="btn btn-primary">Mes projets à traduire</a><br><br>
+        <a href="{{ path('security_editprofil') }}" class="btn btn-sm btn-primary btn" style="background-color: rgba(0, 0, 0, .85); border-color: rgba(0, 0, 0, .85);">Editer mon profil</a><br><br>
 
     {% endblock %}
